@@ -92,8 +92,8 @@ public final class EditSliderScreen extends Screen
 	public void extractRenderState(GuiGraphicsExtractor context, int mouseX,
 		int mouseY, float partialTicks)
 	{
-		context.centeredText(minecraft.font, slider.getName(), width / 2, 20,
-			CommonColors.WHITE);
+		context.centeredText(minecraft.font, slider.getDisplayName(), width / 2,
+			20, CommonColors.WHITE);
 		
 		valueField.extractRenderState(context, mouseX, mouseY, partialTicks);
 		

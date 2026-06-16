@@ -168,6 +168,18 @@ public enum WurstClient
 		return translator.translate(key, args);
 	}
 	
+	/**
+	 * Translates the given key into the current language without applying
+	 * any format arguments. If no translation is found, the key itself is
+	 * returned.
+	 */
+	public String translatePlain(String key)
+	{
+		if(translator == null)
+			return key;
+		return translator.translatePlain(key);
+	}
+	
 	public PlausibleAnalytics getPlausible()
 	{
 		return plausible;

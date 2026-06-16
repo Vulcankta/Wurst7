@@ -60,8 +60,9 @@ public final class FastBreakHack extends Hack
 	public String getRenderName()
 	{
 		if(legitMode.isChecked())
-			return getName() + "Legit";
-		return getName();
+			return getDisplayName()
+				+ WURST.translatePlain("suffix.wurst.hack.legit");
+		return getDisplayName();
 	}
 	
 	@Override

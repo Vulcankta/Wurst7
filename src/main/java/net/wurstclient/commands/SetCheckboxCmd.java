@@ -45,8 +45,8 @@ public final class SetCheckboxCmd extends Command
 		throws CmdError
 	{
 		if(!(setting instanceof CheckboxSetting))
-			throw new CmdError(feature.getName() + " " + setting.getName()
-				+ " is not a checkbox setting.");
+			throw new CmdError(feature.getDisplayName() + " "
+				+ setting.getDisplayName() + " is not a checkbox setting.");
 		
 		return (CheckboxSetting)setting;
 	}

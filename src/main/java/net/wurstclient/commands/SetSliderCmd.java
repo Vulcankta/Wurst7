@@ -46,8 +46,8 @@ public final class SetSliderCmd extends Command
 		throws CmdError
 	{
 		if(!(setting instanceof SliderSetting))
-			throw new CmdError(feature.getName() + " " + setting.getName()
-				+ " is not a slider setting.");
+			throw new CmdError(feature.getDisplayName() + " "
+				+ setting.getDisplayName() + " is not a slider setting.");
 		
 		return (SliderSetting)setting;
 	}

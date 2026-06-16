@@ -145,8 +145,8 @@ public final class EditBlockListScreen extends Screen
 		listGui.extractRenderState(context, mouseX, mouseY, partialTicks);
 		
 		context.centeredText(minecraft.font,
-			blockList.getName() + " (" + blockList.size() + ")", width / 2, 12,
-			CommonColors.WHITE);
+			blockList.getDisplayName() + " (" + blockList.size() + ")",
+			width / 2, 12, CommonColors.WHITE);
 		
 		matrixStack.pushMatrix();
 		

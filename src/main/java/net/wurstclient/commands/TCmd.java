@@ -59,7 +59,9 @@ public final class TCmd extends Command
 		if(!hack.isEnabled() && tooManyHax.isEnabled()
 			&& tooManyHax.isBlocked(hack))
 		{
-			ChatUtils.error(hack.getName() + " is blocked by TooManyHax.");
+			ChatUtils.error(
+				WURST.translate("gui.wurst.generic.blocked_by_too_many_hax",
+					hack.getDisplayName()));
 			return;
 		}
 		

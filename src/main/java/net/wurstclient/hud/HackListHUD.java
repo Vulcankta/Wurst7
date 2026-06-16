@@ -66,7 +66,8 @@ public final class HackListHUD implements UpdateListener
 	private void drawCounter(GuiGraphicsExtractor context)
 	{
 		long size = activeHax.stream().filter(e -> e.hack.isEnabled()).count();
-		String s = size + " hack" + (size != 1 ? "s" : "") + " active";
+		String s = WurstClient.INSTANCE
+			.translate("gui.wurst.generic.hacks_active", size);
 		drawString(context, s);
 	}
 	

@@ -45,9 +45,10 @@ public final class BlinkHack extends Hack
 	public String getRenderName()
 	{
 		if(limit.getValueI() == 0)
-			return getName() + " [" + packets.size() + "]";
-		return getName() + " [" + packets.size() + "/" + limit.getValueI()
-			+ "]";
+			return getDisplayName() + WURST
+				.translate("suffix.wurst.hack.counter_simple", packets.size());
+		return getDisplayName() + WURST.translate("suffix.wurst.hack.counter",
+			packets.size(), limit.getValueI());
 	}
 	
 	@Override

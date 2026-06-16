@@ -193,7 +193,7 @@ public final class TooManyHaxCmd extends Command
 		
 		ChatUtils.message("TooManyHax list (page " + page + "/" + pages + ")");
 		for(int i = start; i < end; i++)
-			ChatUtils.message(blocked.get(i).getName());
+			ChatUtils.message(blocked.get(i).getDisplayName());
 	}
 	
 	private int parsePage(String[] args) throws CmdSyntaxError

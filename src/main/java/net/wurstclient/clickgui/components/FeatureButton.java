@@ -57,7 +57,8 @@ public final class FeatureButton extends Component
 		TooManyHaxHack tooManyHax = WURST.getHax().tooManyHaxHack;
 		if(tooManyHax.isEnabled() && tooManyHax.isBlocked(feature))
 		{
-			ChatUtils.error(feature.getName() + " is blocked by TooManyHax.");
+			ChatUtils
+				.error(feature.getDisplayName() + " is blocked by TooManyHax.");
 			return;
 		}
 		
@@ -120,7 +121,7 @@ public final class FeatureButton extends Component
 				y2 - 0.5F, hSettings, !isSettingsWindowOpen());
 		
 		// text
-		String name = feature.getName();
+		String name = feature.getDisplayName();
 		int tx = x1 + (x3 - x1 - TR.width(name)) / 2;
 		int ty = y1 + 2;
 		context.text(TR, name, tx, ty, GUI.getTxtColor(), false);
@@ -136,7 +137,7 @@ public final class FeatureButton extends Component
 	@Override
 	public int getDefaultWidth()
 	{
-		int width = TR.width(feature.getName());
+		int width = TR.width(feature.getDisplayName());
 		width += hasSettings ? 15 : 4;
 		return width;
 	}

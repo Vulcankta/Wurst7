@@ -134,10 +134,10 @@ public final class NewChunksHack extends Hack
 	public String getRenderName()
 	{
 		if(!showCounter.isChecked())
-			return getName();
+			return getDisplayName();
 		
-		return String.format("%s [%d/%d]", getName(), newChunks.size(),
-			oldChunks.size());
+		return getDisplayName() + WURST.translate("suffix.wurst.hack.counter",
+			newChunks.size(), oldChunks.size());
 	}
 	
 	@Override

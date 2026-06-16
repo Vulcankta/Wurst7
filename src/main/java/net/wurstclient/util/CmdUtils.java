@@ -47,7 +47,7 @@ public enum CmdUtils
 		
 		if(setting == null)
 			throw new CmdError("A setting named \"" + name
-				+ "\" could not be found in " + feature.getName() + ".");
+				+ "\" could not be found in " + feature.getDisplayName() + ".");
 		
 		return setting;
 	}

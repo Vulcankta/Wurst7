@@ -10,6 +10,7 @@ package net.wurstclient;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -48,6 +49,20 @@ public abstract class Feature
 		return ChatUtils.wrapText(getDescription(), width);
 	}
 	
+	/**
+	 * Returns the display name of this feature, which may differ from the
+	 * internal identifier returned by {@link #getName()}. The default
+	 * implementation returns the internal identifier.
+	 *
+	 * <p>
+	 * Override this if the display name should be translated, localized,
+	 * or otherwise differ from the internal name.
+	 */
+	public String getDisplayName()
+	{
+		return getName();
+	}
+	
 	public Category getCategory()
 	{
 		return null;
@@ -72,12 +87,13 @@ public abstract class Feature
 	
 	protected final void addSetting(Setting setting)
 	{
-		String key = setting.getName().toLowerCase();
+		String key = setting.getName().toLowerCase(Locale.ROOT);
 		
 		if(settings.containsKey(key))
 			throw new IllegalArgumentException(
 				"Duplicate setting: " + getName() + " " + key);
 		
+		setting.setParentFeatureName(getName());
 		settings.put(key, setting);
 		possibleKeybinds.addAll(setting.getPossibleKeybinds(getName()));
 	}

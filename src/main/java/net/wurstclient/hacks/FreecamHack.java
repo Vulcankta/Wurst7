@@ -116,9 +116,9 @@ public final class FreecamHack extends Hack
 	public String getRenderName()
 	{
 		if(!renderSpeed.isChecked())
-			return getName();
+			return getDisplayName();
 		
-		return getName() + " [" + horizontalSpeed.getValueString() + ", "
+		return getDisplayName() + " [" + horizontalSpeed.getValueString() + ", "
 			+ verticalSpeed.getValueString() + "]";
 	}
 	

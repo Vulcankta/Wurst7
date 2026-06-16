@@ -81,15 +81,18 @@ public final class TreeBotHack extends Hack
 	public String getRenderName()
 	{
 		if(treeFinder != null && !treeFinder.isDone() && !treeFinder.isFailed())
-			return getName() + " [Searching]";
+			return getDisplayName()
+				+ WURST.translatePlain("suffix.wurst.hack.searching");
 		
 		if(processor != null && !processor.isDone())
-			return getName() + " [Going]";
+			return getDisplayName()
+				+ WURST.translatePlain("suffix.wurst.hack.going");
 		
 		if(tree != null && !tree.getLogs().isEmpty())
-			return getName() + " [Chopping]";
+			return getDisplayName()
+				+ WURST.translatePlain("suffix.wurst.hack.chopping");
 		
-		return getName();
+		return getDisplayName();
 	}
 	
 	@Override

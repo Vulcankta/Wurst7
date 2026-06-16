@@ -48,8 +48,8 @@ public final class SetBlockCmd extends Command
 		throws CmdError
 	{
 		if(!(setting instanceof BlockSetting))
-			throw new CmdError(feature.getName() + " " + setting.getName()
-				+ " is not a block setting.");
+			throw new CmdError(feature.getDisplayName() + " "
+				+ setting.getDisplayName() + " is not a block setting.");
 		
 		return (BlockSetting)setting;
 	}

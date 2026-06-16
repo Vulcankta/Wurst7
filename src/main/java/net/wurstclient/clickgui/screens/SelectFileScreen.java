@@ -134,8 +134,8 @@ public final class SelectFileScreen extends Screen
 	{
 		listGui.extractRenderState(context, mouseX, mouseY, partialTicks);
 		
-		context.centeredText(minecraft.font, setting.getName(), width / 2, 12,
-			CommonColors.WHITE);
+		context.centeredText(minecraft.font, setting.getDisplayName(),
+			width / 2, 12, CommonColors.WHITE);
 		
 		for(Renderable drawable : renderables)
 			drawable.extractRenderState(context, mouseX, mouseY, partialTicks);

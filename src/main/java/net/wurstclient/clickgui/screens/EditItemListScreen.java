@@ -146,8 +146,9 @@ public final class EditItemListScreen extends Screen
 		
 		listGui.extractRenderState(context, mouseX, mouseY, partialTicks);
 		
-		context.centeredText(minecraft.font,
-			itemList.getName() + " (" + itemList.getItemNames().size() + ")",
+		context.centeredText(
+			minecraft.font, itemList.getDisplayName() + " ("
+				+ itemList.getItemNames().size() + ")",
 			width / 2, 12, CommonColors.WHITE);
 		
 		matrixStack.pushMatrix();

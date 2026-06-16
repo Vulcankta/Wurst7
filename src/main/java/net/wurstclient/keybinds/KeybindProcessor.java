@@ -125,7 +125,9 @@ public final class KeybindProcessor
 			if(!hack.isEnabled() && hax.tooManyHaxHack.isEnabled()
 				&& hax.tooManyHaxHack.isBlocked(hack))
 			{
-				ChatUtils.error(hack.getName() + " is blocked by TooManyHax.");
+				ChatUtils.error(WurstClient.INSTANCE.translate(
+					"gui.wurst.generic.blocked_by_too_many_hax",
+					hack.getDisplayName()));
 				return;
 			}
 			

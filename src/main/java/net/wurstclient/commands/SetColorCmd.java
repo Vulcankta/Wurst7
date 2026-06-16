@@ -47,8 +47,8 @@ public final class SetColorCmd extends Command
 		throws CmdError
 	{
 		if(!(setting instanceof ColorSetting))
-			throw new CmdError(feature.getName() + " " + setting.getName()
-				+ " is not a color setting.");
+			throw new CmdError(feature.getDisplayName() + " "
+				+ setting.getDisplayName() + " is not a color setting.");
 		
 		return (ColorSetting)setting;
 	}

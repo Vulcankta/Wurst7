@@ -92,7 +92,7 @@ public final class XRayHack extends Hack
 	private final String bbeWarning;
 	private final String renderName = Math.random() < 0.01
 		&& System.getProperty("fabric.client.gametest") == null ? "X-Wurst"
-			: getName();
+			: null;
 	
 	private ArrayList<String> oreNamesCache;
 	private final ThreadLocal<BlockPos.MutableBlockPos> mutablePosForExposedCheck =
@@ -112,7 +112,7 @@ public final class XRayHack extends Hack
 	@Override
 	public String getRenderName()
 	{
-		return renderName;
+		return renderName != null ? renderName : getDisplayName();
 	}
 	
 	@Override

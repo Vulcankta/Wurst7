@@ -84,8 +84,8 @@ public final class ItemListCmd extends Command
 		String itemName = BuiltInRegistries.ITEM.getKey(item).toString();
 		int index = Collections.binarySearch(setting.getItemNames(), itemName);
 		if(index >= 0)
-			throw new CmdError(feature.getName() + " " + setting.getName()
-				+ " already contains " + itemName);
+			throw new CmdError(feature.getDisplayName() + " "
+				+ setting.getDisplayName() + " already contains " + itemName);
 		
 		setting.add(item);
 	}
@@ -101,8 +101,8 @@ public final class ItemListCmd extends Command
 		String itemName = BuiltInRegistries.ITEM.getKey(item).toString();
 		int index = Collections.binarySearch(setting.getItemNames(), itemName);
 		if(index < 0)
-			throw new CmdError(feature.getName() + " " + setting.getName()
-				+ " does not contain " + itemName);
+			throw new CmdError(feature.getDisplayName() + " "
+				+ setting.getDisplayName() + " does not contain " + itemName);
 		
 		setting.remove(index);
 	}
@@ -128,8 +128,8 @@ public final class ItemListCmd extends Command
 		int start = (page - 1) * 8;
 		int end = Math.min(page * 8, items.size());
 		
-		ChatUtils.message(feature.getName() + " " + setting.getName()
-			+ " (page " + page + "/" + pages + ")");
+		ChatUtils.message(feature.getDisplayName() + " "
+			+ setting.getDisplayName() + " (page " + page + "/" + pages + ")");
 		for(int i = start; i < end; i++)
 			ChatUtils.message(items.get(i).toString());
 	}
@@ -149,8 +149,8 @@ public final class ItemListCmd extends Command
 		Setting setting) throws CmdError
 	{
 		if(!(setting instanceof ItemListSetting))
-			throw new CmdError(feature.getName() + " " + setting.getName()
-				+ " is not a ItemList setting.");
+			throw new CmdError(feature.getDisplayName() + " "
+				+ setting.getDisplayName() + " is not a ItemList setting.");
 		
 		return (ItemListSetting)setting;
 	}

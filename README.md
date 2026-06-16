@@ -1,8 +1,16 @@
-# Wurst Client v7
+# Wurst Client v7（中文漢化分支）
+
+> **此為 [Wurst Client](https://github.com/Wurst-Imperium/Wurst7) 的非官方中文漢化 Fork。**
+>
+> 除 zh_cn（簡體中文）、zh_tw（繁體中文-台灣）、zh_hk（繁體中文-香港）翻譯外，其餘功能與上游完全一致，無任何功能性修改。
+>
+> 本分支的翻譯涵蓋所有 hack 名稱、描述、設定項、分類標籤及 UI 介面文字，共計 **1,090 個翻譯鍵**。
+>
+> 對於功能本身有任何問題，請前往原專案的 [Forum](https://wurstforum.net/) 討論。
 
 ![Wurst Client logo](https://img.wimods.net/github.com/Wurst-Imperium/Wurst7?to=https://wurst.wiki/_media/logo/wurst_758x192.webp)
 
-- **Downloads:** [https://www.wurstclient.net/download/](https://go.wimods.net/from/github.com/Wurst-Imperium/Wurst7?to=https%3A%2F%2Fwww.wurstclient.net%2Fdownload%2F%3Futm_source%3DGitHub%26utm_medium%3DWurst7%2Brepo)
+- **原版下載 / Original Downloads:** [https://www.wurstclient.net/download/](https://go.wimods.net/from/github.com/Wurst-Imperium/Wurst7?to=https%3A%2F%2Fwww.wurstclient.net%2Fdownload%2F%3Futm_source%3DGitHub%26utm_medium%3DWurst7%2Brepo)
 
 - **Installation guide:** [https://www.wurstclient.net/tutorials/how-to-install/](https://go.wimods.net/from/github.com/Wurst-Imperium/Wurst7?to=https%3A%2F%2Fwww.wurstclient.net%2Ftutorials%2Fhow-to-install%2F%3Futm_source%3DGitHub%26utm_medium%3DWurst7%2Brepo)
 
@@ -32,7 +40,7 @@ Also, this should be obvious, but you do need to have a licensed copy of Minecra
 ## Development Setup
 
 > [!IMPORTANT]
-> Make sure you have [Java Development Kit 25](https://adoptium.net/temurin/releases?version=25&os=any&arch=any) installed. It won't work with other versions.
+> Make sure you have [Java Development Kit 21](https://go.wimods.net/from/github.com/Wurst-Imperium/Wurst7?to=https%3A%2F%2Fadoptium.net%2F%3Fvariant%3Dopenjdk21%26jvmVariant%3Dhotspot) installed. It won't work with other versions.
 
 ### Development using Eclipse
 
@@ -97,13 +105,29 @@ Please always [contact me](https://go.wimods.net/from/github.com/Wurst-Imperium/
 
 We also have [contributing guidelines](https://go.wimods.net/from/github.com/Wurst-Imperium/Wurst7?to=https://github.com/Wurst-Imperium/Wurst7/blob/master/CONTRIBUTING.md) to help you get started.
 
-## Translations
+> **注意：** 以上為原專案（Wurst-Imperium）的貢獻說明，僅供參考。**本 Fork 不接受 Pull Request。**
 
-To enable translations in-game, go to Wurst Options > Translations > ON.
+## 中文翻譯 / Chinese Translations
 
-The preferred way to submit translations is through a Pull Request here on GitHub. The translation files are located in [this folder](https://go.wimods.net/from/github.com/Wurst-Imperium/Wurst7?to=https://github.com/Wurst-Imperium/Wurst7/tree/master/src/main/resources/assets/wurst/translations).
+本 Fork 已包含完整的繁體/簡體中文翻譯。啟用方式：
 
-Names of features (hacks/commands/etc.) should always be kept in English. This ensures that everyone can use the same commands, keybinds, etc. regardless of their language setting. It also makes it easier to communicate with someone who uses Wurst in a different language.
+1. 遊戲內開啟 ClickGUI → **Wurst Options** → **Translations** → **ON**
+2. 將 Minecraft 語言設為 **简体中文 (中国大陆)**、**繁體中文 (台灣)** 或 **繁體中文 (香港)**
+
+翻譯覆蓋範圍：
+- ✅ 所有 hack 名稱與描述
+- ✅ 所有設定項名稱
+- ✅ ClickGUI / Navigator / TabGUI 等所有 UI 介面
+- ✅ HackList 側邊欄狀態標籤
+- ✅ 分類標籤（方塊、移動、戰鬥、渲染、聊天、娛樂、物品、其他）
+
+> **注意：** hack 的內部名稱（用於指令、按鍵綁定）仍保留英文，以確保指令與按鍵設定在不同語言使用者之間互通。
+
+### 翻譯貢獻 / Contributing Translations
+
+如果你發現翻譯錯誤或有更好的翻譯建議，歡迎在 [Issues](https://github.com/Vulcankta/Wurst7/issues) 提出。**本 Fork 不接受 Pull Request。**
+
+翻譯檔案位於 [`src/main/resources/assets/wurst/translations/`](src/main/resources/assets/wurst/translations/)。
 
 ## License
 

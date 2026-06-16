@@ -81,9 +81,9 @@ public final class FlightHack extends Hack implements UpdateListener,
 	public String getRenderName()
 	{
 		if(!renderSpeed.isChecked())
-			return getName();
+			return getDisplayName();
 		
-		return getName() + " [" + horizontalSpeed.getValueString() + ", "
+		return getDisplayName() + " [" + horizontalSpeed.getValueString() + ", "
 			+ verticalSpeed.getValueString() + "]";
 	}
 	

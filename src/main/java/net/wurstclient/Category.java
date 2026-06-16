@@ -7,6 +7,8 @@
  */
 package net.wurstclient;
 
+import java.util.Locale;
+
 public enum Category
 {
 	BLOCKS("Blocks"),
@@ -28,5 +30,11 @@ public enum Category
 	public String getName()
 	{
 		return name;
+	}
+	
+	public String getDisplayName()
+	{
+		return WurstClient.INSTANCE
+			.translatePlain("category.wurst." + name.toLowerCase(Locale.ROOT));
 	}
 }

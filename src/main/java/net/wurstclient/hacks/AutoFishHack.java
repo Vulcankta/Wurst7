@@ -99,9 +99,10 @@ public final class AutoFishHack extends Hack
 	public String getRenderName()
 	{
 		if(rodSelector.isOutOfRods())
-			return getName() + " [out of rods]";
+			return getDisplayName()
+				+ WURST.translatePlain("suffix.wurst.hack.out_of_rods");
 		
-		return getName();
+		return getDisplayName();
 	}
 	
 	@Override

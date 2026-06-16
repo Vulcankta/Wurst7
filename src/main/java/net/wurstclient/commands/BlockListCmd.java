@@ -86,8 +86,8 @@ public final class BlockListCmd extends Command
 		
 		String blockName = BlockUtils.getName(block);
 		if(setting.contains(blockName))
-			throw new CmdError(feature.getName() + " " + setting.getName()
-				+ " already contains " + blockName);
+			throw new CmdError(feature.getDisplayName() + " "
+				+ setting.getDisplayName() + " already contains " + blockName);
 		
 		setting.add(block);
 	}
@@ -107,8 +107,8 @@ public final class BlockListCmd extends Command
 		String blockName = BlockUtils.getName(block);
 		int index = setting.indexOf(blockName);
 		if(index < 0)
-			throw new CmdError(feature.getName() + " " + setting.getName()
-				+ " does not contain " + blockName);
+			throw new CmdError(feature.getDisplayName() + " "
+				+ setting.getDisplayName() + " does not contain " + blockName);
 		
 		setting.remove(index);
 	}
@@ -134,8 +134,8 @@ public final class BlockListCmd extends Command
 		int start = (page - 1) * 8;
 		int end = Math.min(page * 8, blocks.size());
 		
-		ChatUtils.message(feature.getName() + " " + setting.getName()
-			+ " (page " + page + "/" + pages + ")");
+		ChatUtils.message(feature.getDisplayName() + " "
+			+ setting.getDisplayName() + " (page " + page + "/" + pages + ")");
 		for(int i = start; i < end; i++)
 			ChatUtils.message(blocks.get(i).toString());
 	}
@@ -155,8 +155,8 @@ public final class BlockListCmd extends Command
 		Setting setting) throws CmdError
 	{
 		if(!(setting instanceof BlockListSetting))
-			throw new CmdError(feature.getName() + " " + setting.getName()
-				+ " is not a BlockList setting.");
+			throw new CmdError(feature.getDisplayName() + " "
+				+ setting.getDisplayName() + " is not a BlockList setting.");
 		
 		return (BlockListSetting)setting;
 	}

@@ -70,8 +70,8 @@ public final class FollowHack extends Hack
 	public String getRenderName()
 	{
 		if(entity != null)
-			return "Following " + entity.getName().getString();
-		return "Follow";
+			return getDisplayName() + ": " + entity.getName().getString();
+		return getDisplayName();
 	}
 	
 	@Override

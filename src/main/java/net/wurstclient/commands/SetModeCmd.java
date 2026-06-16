@@ -45,8 +45,8 @@ public final class SetModeCmd extends Command
 		throws CmdError
 	{
 		if(!(setting instanceof EnumSetting<?>))
-			throw new CmdError(feature.getName() + " " + setting.getName()
-				+ " is not a mode setting.");
+			throw new CmdError(feature.getDisplayName() + " "
+				+ setting.getDisplayName() + " is not a mode setting.");
 		
 		return (EnumSetting<?>)setting;
 	}
@@ -69,9 +69,9 @@ public final class SetModeCmd extends Command
 			default:
 			boolean successful = setting.setSelected(mode);
 			if(!successful)
-				throw new CmdError(
-					"A mode named '" + mode + "' in " + feature.getName() + " "
-						+ setting.getName() + " could not be found.");
+				throw new CmdError("A mode named '" + mode + "' in "
+					+ feature.getDisplayName() + " " + setting.getDisplayName()
+					+ " could not be found.");
 			break;
 		}
 	}
