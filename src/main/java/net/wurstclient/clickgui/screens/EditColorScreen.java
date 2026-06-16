@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -25,6 +25,7 @@ import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.wurstclient.WurstClient;
 import net.wurstclient.settings.ColorSetting;
 import net.wurstclient.util.ColorUtils;
 
@@ -120,8 +121,11 @@ public final class EditColorScreen extends Screen
 		hexValueField.setCursorPosition(0);
 		hexValueField.setHighlightPos(6);
 		
-		doneButton = Button.builder(Component.literal("Done"), b -> done())
-			.bounds(fieldsX, height - 30, 200, 20).build();
+		doneButton =
+			Button
+				.builder(Component.literal(WurstClient.INSTANCE
+					.translatePlain("gui.wurst.generic.done")), b -> done())
+				.bounds(fieldsX, height - 30, 200, 20).build();
 		addRenderableWidget(doneButton);
 	}
 	
@@ -163,8 +167,8 @@ public final class EditColorScreen extends Screen
 		Font tr = minecraft.font;
 		
 		renderBackground(context, mouseX, mouseY, partialTicks);
-		context.drawCenteredString(minecraft.font, colorSetting.getName(),
-			width / 2, 16, 0xF0F0F0);
+		context.drawCenteredString(minecraft.font,
+			colorSetting.getDisplayName(), width / 2, 16, 0xF0F0F0);
 		
 		// Draw palette
 		int x = paletteX;

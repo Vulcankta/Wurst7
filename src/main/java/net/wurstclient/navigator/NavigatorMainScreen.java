@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -160,7 +160,9 @@ public final class NavigatorMainScreen extends NavigatorScreen
 		
 		if(tooManyHax.isEnabled() && tooManyHax.isBlocked(feature))
 		{
-			ChatUtils.error(feature.getName() + " is blocked by TooManyHax.");
+			ChatUtils.error(WurstClient.INSTANCE.translate(
+				"gui.wurst.generic.blocked_by_too_many_hax",
+				feature.getDisplayName()));
 			return;
 		}
 		
@@ -375,7 +377,7 @@ public final class NavigatorMainScreen extends NavigatorScreen
 		if(!clickTimerRunning)
 		{
 			Font tr = minecraft.font;
-			String buttonText = feature.getName();
+			String buttonText = feature.getDisplayName();
 			int bx = area.x + 4;
 			int by = area.y + 4;
 			int txtColor = gui.getTxtColor();

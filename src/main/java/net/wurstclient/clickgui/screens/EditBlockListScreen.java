@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -26,6 +26,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.wurstclient.WurstClient;
 import net.wurstclient.settings.BlockListSetting;
 import net.wurstclient.util.BlockUtils;
 import net.wurstclient.util.RenderUtils;
@@ -61,31 +62,41 @@ public final class EditBlockListScreen extends Screen
 		addWidget(blockNameField);
 		blockNameField.setMaxLength(256);
 		
-		addRenderableWidget(
-			addButton = Button.builder(Component.literal("Add"), b -> {
+		addRenderableWidget(addButton = Button.builder(
+			Component.literal(
+				WurstClient.INSTANCE.translatePlain("gui.wurst.generic.add")),
+			b -> {
 				blockList.add(blockToAdd);
 				minecraft.setScreen(EditBlockListScreen.this);
 			}).bounds(width / 2 - 2, height - 56, 30, 20).build());
 		
-		addRenderableWidget(removeButton =
-			Button.builder(Component.literal("Remove Selected"), b -> {
-				blockList
-					.remove(blockList.indexOf(listGui.getSelectedBlockName()));
-				minecraft.setScreen(EditBlockListScreen.this);
-			}).bounds(width / 2 + 52, height - 56, 100, 20).build());
-		
 		addRenderableWidget(
-			Button.builder(Component.literal("Reset to Defaults"),
-				b -> minecraft.setScreen(new ConfirmScreen(b2 -> {
-					if(b2)
-						blockList.resetToDefaults();
+			removeButton = Button.builder(
+				Component.literal(WurstClient.INSTANCE
+					.translatePlain("gui.wurst.generic.remove_selected")),
+				b -> {
+					blockList.remove(
+						blockList.indexOf(listGui.getSelectedBlockName()));
 					minecraft.setScreen(EditBlockListScreen.this);
-				}, Component.literal("Reset to Defaults"),
-					Component.literal("Are you sure?"))))
-				.bounds(width - 108, 8, 100, 20).build());
+				}).bounds(width / 2 + 52, height - 56, 100, 20).build());
+		
+		addRenderableWidget(Button.builder(
+			Component.literal(WurstClient.INSTANCE
+				.translatePlain("gui.wurst.generic.reset_to_defaults")),
+			b -> minecraft.setScreen(new ConfirmScreen(b2 -> {
+				if(b2)
+					blockList.resetToDefaults();
+				minecraft.setScreen(EditBlockListScreen.this);
+			}, Component.literal(WurstClient.INSTANCE
+				.translatePlain("gui.wurst.generic.reset_to_defaults")),
+				Component.literal(WurstClient.INSTANCE
+					.translatePlain("gui.wurst.generic.are_you_sure")))))
+			.bounds(width - 108, 8, 100, 20).build());
 		
 		addRenderableWidget(doneButton = Button
-			.builder(Component.literal("Done"),
+			.builder(
+				Component.literal(WurstClient.INSTANCE
+					.translatePlain("gui.wurst.generic.done")),
 				b -> minecraft.setScreen(prevScreen))
 			.bounds(width / 2 - 100, height - 28, 200, 20).build());
 	}
@@ -143,8 +154,8 @@ public final class EditBlockListScreen extends Screen
 		listGui.render(context, mouseX, mouseY, partialTicks);
 		
 		context.drawCenteredString(minecraft.font,
-			blockList.getName() + " (" + blockList.size() + ")", width / 2, 12,
-			0xFFFFFF);
+			blockList.getDisplayName() + " (" + blockList.size() + ")",
+			width / 2, 12, 0xFFFFFF);
 		
 		matrixStack.pushPose();
 		matrixStack.translate(0, 0, 300);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -61,7 +61,8 @@ public final class FileComponent extends Component
 		if(hText)
 			GUI.setTooltip(setting.getWrappedDescription(200));
 		else if(hBox)
-			GUI.setTooltip("\u00a7e[left-click]\u00a7r to select file");
+			GUI.setTooltip(WURST
+				.translatePlain("gui.wurst.generic.left_click_to_select_file"));
 		
 		// background
 		context.fill(x1, y1, x3, y2, getFillColor(false));
@@ -73,7 +74,7 @@ public final class FileComponent extends Component
 		
 		// text
 		int txtColor = GUI.getTxtColor();
-		String labelText = setting.getName() + ":";
+		String labelText = setting.getDisplayName() + ":";
 		String buttonText = setting.getSelectedFileName();
 		context.drawString(TR, labelText, x1, y1 + 2, txtColor, false);
 		context.drawString(TR, buttonText, x3 + 2, y1 + 2, txtColor, false);
@@ -93,7 +94,7 @@ public final class FileComponent extends Component
 	@Override
 	public int getDefaultWidth()
 	{
-		String text = setting.getName() + ":";
+		String text = setting.getDisplayName() + ":";
 		return TR.width(text) + getButtonWidth() + 6;
 	}
 	

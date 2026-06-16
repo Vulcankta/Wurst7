@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -32,8 +32,7 @@ public final class AutoDropHack extends Hack implements UpdateListener
 		"minecraft:rose_bush", "minecraft:rotten_flesh", "minecraft:sunflower",
 		"minecraft:wheat_seeds", "minecraft:white_tulip");
 	
-	private final String renderName =
-		Math.random() < 0.01 ? "AutoLinus" : getName();
+	private final String renderName = Math.random() < 0.01 ? "AutoLinus" : null;
 	
 	public AutoDropHack()
 	{
@@ -45,7 +44,7 @@ public final class AutoDropHack extends Hack implements UpdateListener
 	@Override
 	public String getRenderName()
 	{
-		return renderName;
+		return renderName != null ? renderName : getDisplayName();
 	}
 	
 	@Override

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -30,7 +30,8 @@ public class NavigatorRemoveKeybindScreen extends NavigatorScreen
 	private TreeMap<String, PossibleKeybind> existingKeybinds;
 	private String hoveredKey = "";
 	private String selectedKey = "";
-	private String text = "Select the keybind you want to remove.";
+	private String text = WurstClient.INSTANCE
+		.translatePlain("gui.wurst.generic.select_keybind_to_remove");
 	private Button removeButton;
 	
 	public NavigatorRemoveKeybindScreen(
@@ -45,13 +46,19 @@ public class NavigatorRemoveKeybindScreen extends NavigatorScreen
 	protected void onResize()
 	{
 		removeButton =
-			Button.builder(Component.literal("Remove"), b -> remove())
+			Button
+				.builder(
+					Component.literal(WurstClient.INSTANCE
+						.translatePlain("gui.wurst.generic.remove")),
+					b -> remove())
 				.bounds(width / 2 - 151, height - 65, 149, 18).build();
 		removeButton.active = !selectedKey.isEmpty();
 		addRenderableWidget(removeButton);
 		
 		addRenderableWidget(Button
-			.builder(Component.literal("Cancel"),
+			.builder(
+				Component.literal(WurstClient.INSTANCE
+					.translatePlain("gui.wurst.generic.cancel")),
 				b -> minecraft.setScreen(parent))
 			.bounds(width / 2 + 2, height - 65, 149, 18).build());
 	}
@@ -130,7 +137,8 @@ public class NavigatorRemoveKeybindScreen extends NavigatorScreen
 		int txtColor = gui.getTxtColor();
 		
 		// title bar
-		context.drawCenteredString(tr, "Remove Keybind", middleX, 32, txtColor);
+		context.drawCenteredString(tr, WurstClient.INSTANCE.translatePlain(
+			"gui.wurst.generic.remove_keybind"), middleX, 32, txtColor);
 		
 		// background
 		int bgx1 = middleX - 154;

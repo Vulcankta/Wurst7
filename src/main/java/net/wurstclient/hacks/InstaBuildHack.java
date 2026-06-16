@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -76,7 +76,7 @@ public final class InstaBuildHack extends Hack
 	@Override
 	public String getRenderName()
 	{
-		String name = getName();
+		String name = getDisplayName();
 		
 		switch(status)
 		{
@@ -84,11 +84,12 @@ public final class InstaBuildHack extends Hack
 			break;
 			
 			case LOADING:
-			name += " [Loading...]";
+			name += WURST.translatePlain("suffix.wurst.hack.loading");
 			break;
 			
 			case IDLE:
-			name += " [" + template.getName() + "]";
+			name += WURST.translate("suffix.wurst.hack.block_name",
+				template.getName());
 			break;
 		}
 		

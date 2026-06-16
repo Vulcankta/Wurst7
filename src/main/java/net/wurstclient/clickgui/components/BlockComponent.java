@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -80,7 +80,7 @@ public final class BlockComponent extends Component
 		context.fill(x1, y1, x2, y2, bgColor);
 		
 		// text
-		String name = setting.getName() + ":";
+		String name = setting.getDisplayName() + ":";
 		context.drawString(TR, name, x1, y1 + 2, GUI.getTxtColor(), false);
 		
 		// block
@@ -105,7 +105,8 @@ public final class BlockComponent extends Component
 		BlockState state = block.defaultBlockState();
 		ItemStack stack = new ItemStack(block);
 		
-		String translatedName = stack.isEmpty() ? "\u00a7ounknown block\u00a7r"
+		String translatedName = stack.isEmpty()
+			? WURST.translatePlain("gui.wurst.generic.unknown_block")
 			: stack.getHoverName().getString();
 		String tooltip = "\u00a76Name:\u00a7r " + translatedName;
 		
@@ -115,8 +116,9 @@ public final class BlockComponent extends Component
 		int blockNumber = Block.getId(state);
 		tooltip += "\n\u00a76Block #:\u00a7r " + blockNumber;
 		
-		tooltip += "\n\n\u00a7e[left-click]\u00a7r to edit";
-		tooltip += "\n\u00a7e[right-click]\u00a7r to reset";
+		tooltip += WURST.translatePlain("gui.wurst.generic.left_click_to_edit");
+		tooltip += "\n"
+			+ WURST.translatePlain("gui.wurst.generic.right_click_to_reset");
 		
 		return tooltip;
 	}
@@ -124,7 +126,7 @@ public final class BlockComponent extends Component
 	@Override
 	public int getDefaultWidth()
 	{
-		return TR.width(setting.getName() + ":") + BLOCK_WIDTH + 4;
+		return TR.width(setting.getDisplayName() + ":") + BLOCK_WIDTH + 4;
 	}
 	
 	@Override

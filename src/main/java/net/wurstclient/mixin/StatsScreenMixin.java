@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -58,7 +58,9 @@ public class StatsScreenMixin
 	private Component getButtonText()
 	{
 		WurstClient wurst = WurstClient.INSTANCE;
-		String text = (wurst.isEnabled() ? "Disable" : "Enable") + " Wurst";
+		String text =
+			wurst.translatePlain(wurst.isEnabled() ? "gui.wurst.generic.disable"
+				: "gui.wurst.generic.enable") + " Wurst";
 		return Component.literal(text);
 	}
 }

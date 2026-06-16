@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -7,6 +7,7 @@
  */
 package net.wurstclient.hack;
 
+import java.util.Locale;
 import java.util.Objects;
 
 import net.wurstclient.Category;
@@ -19,6 +20,7 @@ public abstract class Hack extends Feature
 {
 	private final String name;
 	private final String description;
+	private final String translationKey;
 	private Category category;
 	
 	private boolean enabled;
@@ -28,14 +30,23 @@ public abstract class Hack extends Feature
 	public Hack(String name)
 	{
 		this.name = Objects.requireNonNull(name);
-		description = "description.wurst.hack." + name.toLowerCase();
-		addPossibleKeybind(name, "Toggle " + name);
+		translationKey = "hack.wurst." + name.toLowerCase(Locale.ROOT);
+		description = "description.wurst.hack." + name.toLowerCase(Locale.ROOT);
+		addPossibleKeybind(name,
+			WURST.translate("gui.wurst.generic.toggle", name));
 	}
 	
 	@Override
 	public final String getName()
 	{
 		return name;
+	}
+	
+	@Override
+	public final String getDisplayName()
+	{
+		String translated = WURST.translatePlain(translationKey);
+		return translated.equals(translationKey) ? name : translated;
 	}
 	
 	/**
@@ -46,7 +57,7 @@ public abstract class Hack extends Feature
 	 */
 	public String getRenderName()
 	{
-		return name;
+		return getDisplayName();
 	}
 	
 	@Override
@@ -103,7 +114,8 @@ public abstract class Hack extends Feature
 	@Override
 	public final String getPrimaryAction()
 	{
-		return enabled ? "Disable" : "Enable";
+		return WURST.translatePlain(
+			enabled ? "gui.wurst.generic.disable" : "gui.wurst.generic.enable");
 	}
 	
 	@Override

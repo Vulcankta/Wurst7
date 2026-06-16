@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -97,7 +97,7 @@ public final class AutoBuildHack extends Hack
 	@Override
 	public String getRenderName()
 	{
-		String name = getName();
+		String name = getDisplayName();
 		
 		switch(status)
 		{
@@ -105,18 +105,20 @@ public final class AutoBuildHack extends Hack
 			break;
 			
 			case LOADING:
-			name += " [Loading...]";
+			name += WURST.translatePlain("suffix.wurst.hack.loading");
 			break;
 			
 			case IDLE:
-			name += " [" + template.getName() + "]";
+			name += WURST.translate("suffix.wurst.hack.block_name",
+				template.getName());
 			break;
 			
 			case BUILDING:
 			double total = template.size();
 			double placed = total - remainingBlocks.size();
 			double progress = Math.round(placed / total * 1e4) / 1e2;
-			name += " [" + template.getName() + "] " + progress + "%";
+			name += WURST.translate("suffix.wurst.hack.block_name",
+				template.getName()) + " " + progress + "%";
 			break;
 		}
 		

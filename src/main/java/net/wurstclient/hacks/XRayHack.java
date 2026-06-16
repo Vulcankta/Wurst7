@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -90,8 +90,7 @@ public final class XRayHack extends Hack implements UpdateListener,
 		0, 0, 0.99, 0.01, ValueDisplay.PERCENTAGE.withLabel(0, "off"));
 	
 	private final String optiFineWarning;
-	private final String renderName =
-		Math.random() < 0.01 ? "X-Wurst" : getName();
+	private final String renderName = Math.random() < 0.01 ? "X-Wurst" : null;
 	
 	private ArrayList<String> oreNamesCache;
 	private final ThreadLocal<BlockPos.MutableBlockPos> mutablePosForExposedCheck =
@@ -110,7 +109,7 @@ public final class XRayHack extends Hack implements UpdateListener,
 	@Override
 	public String getRenderName()
 	{
-		return renderName;
+		return renderName != null ? renderName : getDisplayName();
 	}
 	
 	@Override

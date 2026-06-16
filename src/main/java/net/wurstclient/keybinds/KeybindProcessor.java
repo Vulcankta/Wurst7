@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -91,7 +91,9 @@ public final class KeybindProcessor implements KeyPressListener
 			if(!hack.isEnabled() && hax.tooManyHaxHack.isEnabled()
 				&& hax.tooManyHaxHack.isBlocked(hack))
 			{
-				ChatUtils.error(hack.getName() + " is blocked by TooManyHax.");
+				ChatUtils.error(WurstClient.INSTANCE.translate(
+					"gui.wurst.generic.blocked_by_too_many_hax",
+					hack.getDisplayName()));
 				return;
 			}
 			

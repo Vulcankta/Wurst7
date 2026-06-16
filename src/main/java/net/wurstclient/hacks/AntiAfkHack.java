@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -83,9 +83,10 @@ public final class AntiAfkHack extends Hack
 	public String getRenderName()
 	{
 		if(showWaitTime.isChecked() && timer > 0)
-			return getName() + " [" + timer * 50 + "ms]";
+			return getDisplayName()
+				+ WURST.translate("suffix.wurst.hack.wait_time", timer * 50);
 		
-		return getName();
+		return getDisplayName();
 	}
 	
 	@Override

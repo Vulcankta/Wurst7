@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -24,8 +24,10 @@ public final class ToggleAllPlantTypesComponent extends Component
 	private static final Font TR = MC.font;
 	private static final int BOX_SIZE = 11;
 	private static final int ICON_SIZE = 24;
-	private static final String HARVEST = "Harvest";
-	private static final String REPLANT = "Replant";
+	private static final String HARVEST =
+		WURST.translatePlain("gui.wurst.autofarm.harvest");
+	private static final String REPLANT =
+		WURST.translatePlain("gui.wurst.autofarm.replant");
 	
 	private final ToggleAllPlantTypesSetting setting;
 	
@@ -126,7 +128,7 @@ public final class ToggleAllPlantTypesComponent extends Component
 				hReplant, false);
 		
 		// text
-		String name = setting.getName();
+		String name = setting.getDisplayName();
 		context.drawString(TR, name, x3 + 2, y1 + 3, GUI.getTxtColor(), false);
 		context.drawString(TR, HARVEST, x4 + 2, y3 + 2, GUI.getTxtColor(),
 			false);
@@ -143,7 +145,7 @@ public final class ToggleAllPlantTypesComponent extends Component
 	@Override
 	public int getDefaultWidth()
 	{
-		int nameWidth = TR.width(setting.getName());
+		int nameWidth = TR.width(setting.getDisplayName());
 		int boxesWidth =
 			2 * BOX_SIZE + TR.width(HARVEST) + TR.width(REPLANT) + 6;
 		return ICON_SIZE + Math.max(nameWidth, boxesWidth);

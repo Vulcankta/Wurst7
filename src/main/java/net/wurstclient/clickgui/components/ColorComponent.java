@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -82,7 +82,7 @@ public final class ColorComponent extends Component
 		RenderUtils.drawBorder2D(context, x1, y3, x2, y2, outlineColor);
 		
 		// text
-		String name = setting.getName();
+		String name = setting.getDisplayName();
 		String value = ColorUtils.toHex(setting.getColor());
 		int valueWidth = TR.width(value);
 		int txtColor = GUI.getTxtColor();
@@ -95,15 +95,16 @@ public final class ColorComponent extends Component
 		String tooltip = "\u00a7cR:\u00a7r" + setting.getRed();
 		tooltip += " \u00a7aG:\u00a7r" + setting.getGreen();
 		tooltip += " \u00a79B:\u00a7r" + setting.getBlue();
-		tooltip += "\n\n\u00a7e[left-click]\u00a7r to edit";
-		tooltip += "\n\u00a7e[right-click]\u00a7r to reset";
+		tooltip += WURST.translatePlain("gui.wurst.generic.left_click_to_edit");
+		tooltip += "\n"
+			+ WURST.translatePlain("gui.wurst.generic.right_click_to_reset");
 		return tooltip;
 	}
 	
 	@Override
 	public int getDefaultWidth()
 	{
-		return TR.width(setting.getName() + "#FFFFFF") + 6;
+		return TR.width(setting.getDisplayName() + "#FFFFFF") + 6;
 	}
 	
 	@Override

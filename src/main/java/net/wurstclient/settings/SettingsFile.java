@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -122,7 +123,7 @@ public final class SettingsFile
 		
 		for(Entry<String, JsonElement> e : json.entrySet())
 		{
-			String key = e.getKey().toLowerCase();
+			String key = e.getKey().toLowerCase(Locale.ROOT);
 			if(!settings.containsKey(key))
 				continue;
 			

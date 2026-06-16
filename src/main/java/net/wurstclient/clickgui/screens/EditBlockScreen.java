@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -21,6 +21,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.wurstclient.WurstClient;
 import net.wurstclient.settings.BlockSetting;
 import net.wurstclient.util.BlockUtils;
 import net.wurstclient.util.RenderUtils;
@@ -59,8 +60,11 @@ public final class EditBlockScreen extends Screen
 		setFocused(blockField);
 		blockField.setFocused(true);
 		
-		doneButton = Button.builder(Component.literal("Done"), b -> done())
-			.bounds(x1, y2, 200, 20).build();
+		doneButton =
+			Button
+				.builder(Component.literal(WurstClient.INSTANCE
+					.translatePlain("gui.wurst.generic.done")), b -> done())
+				.bounds(x1, y2, 200, 20).build();
 		addRenderableWidget(doneButton);
 	}
 	
@@ -100,7 +104,7 @@ public final class EditBlockScreen extends Screen
 		Font tr = minecraft.font;
 		
 		renderBackground(context, mouseX, mouseY, partialTicks);
-		context.drawCenteredString(tr, setting.getName(), width / 2, 20,
+		context.drawCenteredString(tr, setting.getDisplayName(), width / 2, 20,
 			0xFFFFFF);
 		
 		blockField.render(context, mouseX, mouseY, partialTicks);

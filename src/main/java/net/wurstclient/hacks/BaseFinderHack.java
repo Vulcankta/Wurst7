@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -107,20 +107,20 @@ public final class BaseFinderHack extends Hack
 	@Override
 	public String getRenderName()
 	{
-		String name = getName() + " [";
-		
-		// counter
+		String counterText;
 		if(counter >= 10000)
-			name += "10000+ blocks";
+			counterText =
+				WURST.translatePlain("suffix.wurst.hack.blocks_10000_plus");
 		else if(counter == 1)
-			name += "1 block";
+			counterText = WURST.translatePlain("suffix.wurst.hack.blocks_one");
 		else if(counter == 0)
-			name += "nothing";
+			counterText = WURST.translatePlain("suffix.wurst.hack.blocks_none");
 		else
-			name += counter + " blocks";
+			counterText =
+				WURST.translate("suffix.wurst.hack.blocks_count", counter);
 		
-		name += " found]";
-		return name;
+		return getDisplayName()
+			+ WURST.translate("suffix.wurst.hack.found", counterText);
 	}
 	
 	@Override

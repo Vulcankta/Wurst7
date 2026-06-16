@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -7,6 +7,7 @@
  */
 package net.wurstclient.util;
 
+import java.util.Locale;
 import java.util.stream.Stream;
 
 import net.minecraft.client.Minecraft;
@@ -42,7 +43,7 @@ public enum CmdUtils
 	public static Setting findSetting(Feature feature, String name)
 		throws CmdError
 	{
-		name = name.replace("_", " ").toLowerCase();
+		name = name.replace("_", " ").toLowerCase(Locale.ROOT);
 		Setting setting = feature.getSettings().get(name);
 		
 		if(setting == null)

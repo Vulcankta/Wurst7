@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -24,6 +24,7 @@ import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.screens.ConfirmScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.wurstclient.WurstClient;
 import net.wurstclient.settings.FileSetting;
 
 public final class SelectFileScreen extends Screen
@@ -47,22 +48,33 @@ public final class SelectFileScreen extends Screen
 		listGui = new ListGui(minecraft, this, setting.listFiles());
 		addWidget(listGui);
 		
-		addRenderableWidget(
-			Button.builder(Component.literal("Open Folder"), b -> openFolder())
-				.bounds(8, 8, 100, 20).build());
+		addRenderableWidget(Button.builder(
+			Component.literal(WurstClient.INSTANCE
+				.translatePlain("gui.wurst.generic.open_folder")),
+			b -> openFolder()).bounds(8, 8, 100, 20).build());
 		
 		addRenderableWidget(Button
-			.builder(Component.literal("Reset to Defaults"),
+			.builder(
+				Component.literal(WurstClient.INSTANCE
+					.translatePlain("gui.wurst.generic.reset_to_defaults")),
 				b -> askToConfirmReset())
 			.bounds(width - 108, 8, 100, 20).build());
 		
-		doneButton = addRenderableWidget(
-			Button.builder(Component.literal("Done"), b -> done())
-				.bounds(width / 2 - 102, height - 48, 100, 20).build());
+		doneButton =
+			addRenderableWidget(
+				Button
+					.builder(
+						Component.literal(WurstClient.INSTANCE
+							.translatePlain("gui.wurst.generic.done")),
+						b -> done())
+					.bounds(width / 2 - 102, height - 48, 100, 20).build());
 		
-		addRenderableWidget(
-			Button.builder(Component.literal("Cancel"), b -> openPrevScreen())
-				.bounds(width / 2 + 2, height - 48, 100, 20).build());
+		addRenderableWidget(Button
+			.builder(
+				Component.literal(WurstClient.INSTANCE
+					.translatePlain("gui.wurst.generic.cancel")),
+				b -> openPrevScreen())
+			.bounds(width / 2 + 2, height - 48, 100, 20).build());
 	}
 	
 	private void openFolder()
@@ -132,8 +144,8 @@ public final class SelectFileScreen extends Screen
 		renderBackground(context, mouseX, mouseY, partialTicks);
 		listGui.render(context, mouseX, mouseY, partialTicks);
 		
-		context.drawCenteredString(minecraft.font, setting.getName(), width / 2,
-			12, 0xffffff);
+		context.drawCenteredString(minecraft.font, setting.getDisplayName(),
+			width / 2, 12, 0xffffff);
 		
 		for(Renderable drawable : renderables)
 			drawable.render(context, mouseX, mouseY, partialTicks);

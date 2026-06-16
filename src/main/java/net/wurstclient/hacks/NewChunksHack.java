@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -134,10 +134,10 @@ public final class NewChunksHack extends Hack
 	public String getRenderName()
 	{
 		if(!showCounter.isChecked())
-			return getName();
+			return getDisplayName();
 		
-		return String.format("%s [%d/%d]", getName(), newChunks.size(),
-			oldChunks.size());
+		return getDisplayName() + WURST.translate("suffix.wurst.hack.counter",
+			newChunks.size(), oldChunks.size());
 	}
 	
 	@Override

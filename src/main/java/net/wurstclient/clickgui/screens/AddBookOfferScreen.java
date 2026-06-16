@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -35,6 +35,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.wurstclient.WurstClient;
 import net.wurstclient.hacks.autolibrarian.BookOffer;
 import net.wurstclient.settings.BookOffersSetting;
 import net.wurstclient.util.MathUtils;
@@ -153,15 +154,19 @@ public final class AddBookOfferScreen extends Screen
 			.build());
 		priceMinusButton.active = false;
 		
-		addRenderableWidget(
-			addButton = Button.builder(Component.literal("Add"), b -> {
+		addRenderableWidget(addButton = Button.builder(
+			Component.literal(
+				WurstClient.INSTANCE.translatePlain("gui.wurst.generic.add")),
+			b -> {
 				bookOffers.add(offerToAdd);
 				minecraft.setScreen(prevScreen);
 			}).bounds(width / 2 - 102, height - 28, 100, 20).build());
 		addButton.active = false;
 		
 		addRenderableWidget(cancelButton = Button
-			.builder(Component.literal("Cancel"),
+			.builder(
+				Component.literal(WurstClient.INSTANCE
+					.translatePlain("gui.wurst.generic.cancel")),
 				b -> minecraft.setScreen(prevScreen))
 			.bounds(width / 2 + 2, height - 28, 100, 20).build());
 	}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -65,7 +65,8 @@ public final class HackListHUD implements UpdateListener
 	private void drawCounter(GuiGraphics context)
 	{
 		long size = activeHax.stream().filter(e -> e.hack.isEnabled()).count();
-		String s = size + " hack" + (size != 1 ? "s" : "") + " active";
+		String s = WurstClient.INSTANCE
+			.translate("gui.wurst.generic.hacks_active", size);
 		drawString(context, s);
 	}
 	

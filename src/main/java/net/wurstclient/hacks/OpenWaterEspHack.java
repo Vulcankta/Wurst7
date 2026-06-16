@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -34,9 +34,11 @@ public final class OpenWaterEspHack extends Hack implements RenderListener
 		FishingHook bobber = Optional.ofNullable(MC.player)
 			.map(player -> player.fishing).orElse(null);
 		if(bobber == null)
-			return getName();
+			return getDisplayName();
 		
-		return getName() + (isInOpenWater(bobber) ? " [open]" : " [shallow]");
+		return getDisplayName() + (isInOpenWater(bobber)
+			? WURST.translatePlain("suffix.wurst.hack.open_water")
+			: WURST.translatePlain("suffix.wurst.hack.shallow_water"));
 	}
 	
 	@Override

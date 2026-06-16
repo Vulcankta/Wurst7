@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -45,8 +45,8 @@ public final class SetModeCmd extends Command
 		throws CmdError
 	{
 		if(!(setting instanceof EnumSetting<?>))
-			throw new CmdError(feature.getName() + " " + setting.getName()
-				+ " is not a mode setting.");
+			throw new CmdError(feature.getName() + " "
+				+ setting.getDisplayName() + " is not a mode setting.");
 		
 		return (EnumSetting<?>)setting;
 	}
@@ -71,7 +71,7 @@ public final class SetModeCmd extends Command
 			if(!successful)
 				throw new CmdError(
 					"A mode named '" + mode + "' in " + feature.getName() + " "
-						+ setting.getName() + " could not be found.");
+						+ setting.getDisplayName() + " could not be found.");
 			break;
 		}
 	}

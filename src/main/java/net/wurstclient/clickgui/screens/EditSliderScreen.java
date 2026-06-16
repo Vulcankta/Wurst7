@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -16,6 +16,7 @@ import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.wurstclient.WurstClient;
 import net.wurstclient.settings.SliderSetting;
 import net.wurstclient.settings.SliderSetting.ValueDisplay;
 import net.wurstclient.util.MathUtils;
@@ -54,8 +55,11 @@ public final class EditSliderScreen extends Screen
 		setFocused(valueField);
 		valueField.setFocused(true);
 		
-		doneButton = Button.builder(Component.literal("Done"), b -> done())
-			.bounds(x1, y2, 200, 20).build();
+		doneButton =
+			Button
+				.builder(Component.literal(WurstClient.INSTANCE
+					.translatePlain("gui.wurst.generic.done")), b -> done())
+				.bounds(x1, y2, 200, 20).build();
 		addRenderableWidget(doneButton);
 	}
 	
@@ -91,8 +95,8 @@ public final class EditSliderScreen extends Screen
 		float partialTicks)
 	{
 		renderBackground(context, mouseX, mouseY, partialTicks);
-		context.drawCenteredString(minecraft.font, slider.getName(), width / 2,
-			20, 0xFFFFFF);
+		context.drawCenteredString(minecraft.font, slider.getDisplayName(),
+			width / 2, 20, 0xFFFFFF);
 		
 		valueField.render(context, mouseX, mouseY, partialTicks);
 		

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -120,7 +120,7 @@ public final class ComboBoxComponent<T extends Enum<T>> extends Component
 			hBox, !isPopupOpen());
 		
 		// text
-		String name = setting.getName();
+		String name = setting.getDisplayName();
 		String value = "" + setting.getSelected();
 		int txtColor = GUI.getTxtColor();
 		context.drawString(TR, name, x1, y1 + 2, txtColor, false);
@@ -136,7 +136,7 @@ public final class ComboBoxComponent<T extends Enum<T>> extends Component
 	@Override
 	public int getDefaultWidth()
 	{
-		return TR.width(setting.getName()) + popupWidth + ARROW_SIZE + 6;
+		return TR.width(setting.getDisplayName()) + popupWidth + ARROW_SIZE + 6;
 	}
 	
 	@Override

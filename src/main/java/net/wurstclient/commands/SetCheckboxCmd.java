@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -45,8 +45,8 @@ public final class SetCheckboxCmd extends Command
 		throws CmdError
 	{
 		if(!(setting instanceof CheckboxSetting))
-			throw new CmdError(feature.getName() + " " + setting.getName()
-				+ " is not a checkbox setting.");
+			throw new CmdError(feature.getName() + " "
+				+ setting.getDisplayName() + " is not a checkbox setting.");
 		
 		return (CheckboxSetting)setting;
 	}

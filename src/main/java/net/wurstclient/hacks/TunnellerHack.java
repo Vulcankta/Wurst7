@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -98,8 +98,9 @@ public final class TunnellerHack extends Hack
 	public String getRenderName()
 	{
 		if(limit.getValueI() == 0)
-			return getName();
-		return getName() + " [" + length + "/" + limit.getValueI() + "]";
+			return getDisplayName();
+		return getDisplayName() + WURST.translate("suffix.wurst.hack.counter",
+			length, limit.getValueI());
 	}
 	
 	@Override

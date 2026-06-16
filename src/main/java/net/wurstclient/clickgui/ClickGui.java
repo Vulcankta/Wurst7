@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -69,7 +69,7 @@ public final class ClickGui
 		
 		LinkedHashMap<Category, Window> windowMap = new LinkedHashMap<>();
 		for(Category category : Category.values())
-			windowMap.put(category, new Window(category.getName()));
+			windowMap.put(category, new Window(category.getDisplayName()));
 		
 		ArrayList<Feature> features = new ArrayList<>();
 		features.addAll(WURST.getHax().getAllHax());
@@ -82,7 +82,8 @@ public final class ClickGui
 			
 		windows.addAll(windowMap.values());
 		
-		Window uiSettings = new Window("UI Settings");
+		Window uiSettings =
+			new Window(WURST.translatePlain("gui.wurst.generic.ui_settings"));
 		uiSettings.add(new FeatureButton(WURST.getOtfs().wurstLogoOtf));
 		uiSettings.add(new FeatureButton(WURST.getOtfs().hackListOtf));
 		uiSettings.add(new FeatureButton(WURST.getOtfs().keybindManagerOtf));

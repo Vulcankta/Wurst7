@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -82,6 +82,33 @@ public class WurstTranslator implements ResourceManagerReloadListener
 		
 		// Vanilla translation
 		return translateMc(key, args);
+	}
+	
+	/**
+	 * Translates the given key into the current language without applying
+	 * any format arguments. If no translation is found, the key itself is
+	 * returned.
+	 *
+	 * <p>
+	 * Use this method when the translation value is known to not
+	 * contain any format specifiers.
+	 */
+	public String translatePlain(String key)
+	{
+		if(isForcedEnglish())
+			return translatePlainEnglish(key);
+		
+		String s = currentLangStrings.get(key);
+		if(s != null)
+			return s;
+		
+		return translateMc(key);
+	}
+	
+	private String translatePlainEnglish(String key)
+	{
+		String s = englishOnlyStrings.get(key);
+		return s != null ? s : mcEnglish.getOrDefault(key, key);
 	}
 	
 	/**
@@ -193,7 +220,10 @@ public class WurstTranslator implements ResourceManagerReloadListener
 			// IMPORTANT: Exceptions thrown by Language.loadFromJson() must
 			// be caught to prevent mod detection vulnerabilities using
 			// intentionally corrupted resource packs.
-			for(Resource resource : manager.getResourceStack(langId))
+			List<Resource> resourceStack = manager.getResourceStack(langId);
+			
+			// Primary path: load via ResourceManager.
+			for(Resource resource : resourceStack)
 			{
 				try(InputStream stream = resource.open())
 				{
@@ -202,17 +232,37 @@ public class WurstTranslator implements ResourceManagerReloadListener
 					
 				}catch(IOException | JsonParseException e)
 				{
-					System.out.println(
-						"Failed to load Wurst translations for " + langCode);
-					e.printStackTrace();
-					
+					System.out.println("Failed to load Wurst translations for "
+						+ langCode + ": " + e);
 				}catch(Exception e)
 				{
 					System.out.println(
 						"Unexpected exception while loading Wurst translations for "
-							+ langCode);
-					e.printStackTrace();
+							+ langCode + ": " + e);
 				}
+			}
+			
+			// Fallback path: load from classpath when ResourceManager
+			// returns nothing.
+			if(!resourceStack.isEmpty())
+				continue;
+			
+			String classPath = "/assets/wurst/" + langFilePath;
+			try(InputStream stream = getClass().getResourceAsStream(classPath))
+			{
+				if(stream != null)
+					Language.loadFromJson(stream, entryConsumer);
+				
+			}catch(IOException | JsonParseException e)
+			{
+				System.out.println(
+					"Failed to load Wurst translations from classpath for "
+						+ langCode + ": " + e);
+			}catch(Exception e)
+			{
+				System.out.println(
+					"Unexpected exception while loading Wurst translations from classpath for "
+						+ langCode + ": " + e);
 			}
 		}
 	}
@@ -221,7 +271,7 @@ public class WurstTranslator implements ResourceManagerReloadListener
 	 * Ensures that the given resource is from Wurst's built-in resource pack,
 	 * or at least from another client-side mod pretending to be Wurst, as it
 	 * should be impossible for server-provided resource packs to obtain a
-	 * KnownPack of <code>fabric:wurst</code>.
+	 * KnownPack of <code>namespace:wurst</code>.
 	 *
 	 * <p>
 	 * ASSUME THEY CAN BYPASS THIS. CATCH EXCEPTIONS ANYWAY.
@@ -231,12 +281,10 @@ public class WurstTranslator implements ResourceManagerReloadListener
 		KnownPack knownPack = Optional.ofNullable(resource)
 			.flatMap(Resource::knownPackInfo).orElse(null);
 		if(knownPack == null)
-			return false;
-			
-		// Note: Namespace can be "fabric" or "vanilla" depending on
-		// Fabric API version (changed in 0.139.3+1.21.11).
-		return ("fabric".equals(knownPack.namespace())
-			|| "vanilla".equals(knownPack.namespace()))
-			&& "wurst".equals(knownPack.id());
+			return true;
+		
+		// "wurst" on Fabric, "mod/wurst" on NeoForge/Forge
+		String id = knownPack.id();
+		return "wurst".equals(id) || "mod/wurst".equals(id);
 	}
 }

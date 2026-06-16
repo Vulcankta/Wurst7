@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -160,7 +160,7 @@ public final class SliderComponent extends Component
 		matrices.popPose();
 		
 		// text
-		String name = setting.getName();
+		String name = setting.getDisplayName();
 		String value = setting.getValueString();
 		int valueWidth = TR.width(value);
 		int txtColor = GUI.getTxtColor();
@@ -173,10 +173,12 @@ public final class SliderComponent extends Component
 		String tooltip = setting.getWrappedDescription(200);
 		
 		if(setting.isDisabled())
-			tooltip += "\n\nThis slider is disabled.";
+			tooltip +=
+				WURST.translatePlain("gui.wurst.generic.slider_disabled");
 		else if(setting.isLocked())
 		{
-			tooltip += "\n\nThis slider is locked to ";
+			tooltip +=
+				WURST.translatePlain("gui.wurst.generic.slider_locked_to");
 			tooltip += setting.getValueString() + ".";
 		}
 		
@@ -185,16 +187,17 @@ public final class SliderComponent extends Component
 	
 	private String getSliderTooltip()
 	{
-		String tooltip =
-			"\u00a7e[ctrl]\u00a7r+\u00a7e[left-click]\u00a7r for precise input\n";
-		tooltip += "\u00a7e[right-click]\u00a7r to reset";
+		String tooltip = WURST.translatePlain(
+			"gui.wurst.generic.ctrl_left_click_for_precise_input");
+		tooltip +=
+			WURST.translatePlain("gui.wurst.generic.right_click_to_reset");
 		return tooltip;
 	}
 	
 	@Override
 	public int getDefaultWidth()
 	{
-		int nameWitdh = TR.width(setting.getName());
+		int nameWitdh = TR.width(setting.getDisplayName());
 		int valueWidth = TR.width(setting.getValueString());
 		return nameWitdh + valueWidth + 6;
 	}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -80,7 +80,7 @@ public final class CheckboxComponent extends Component
 				setting.isLocked());
 		
 		// text
-		String name = setting.getName();
+		String name = setting.getDisplayName();
 		context.drawString(TR, name, x3 + 2, y1 + 2, GUI.getTxtColor(), false);
 	}
 	
@@ -95,7 +95,8 @@ public final class CheckboxComponent extends Component
 		String tooltip = setting.getWrappedDescription(200);
 		if(setting.isLocked())
 		{
-			tooltip += "\n\nThis checkbox is locked to ";
+			tooltip +=
+				WURST.translatePlain("gui.wurst.generic.checkbox_locked_to");
 			tooltip += setting.isChecked() + ".";
 		}
 		
@@ -105,7 +106,7 @@ public final class CheckboxComponent extends Component
 	@Override
 	public int getDefaultWidth()
 	{
-		return BOX_SIZE + TR.width(setting.getName()) + 2;
+		return BOX_SIZE + TR.width(setting.getDisplayName()) + 2;
 	}
 	
 	@Override

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import net.wurstclient.Feature;
 import net.wurstclient.command.CmdList;
@@ -51,14 +52,15 @@ public final class Navigator
 		
 		// add search results
 		for(Feature mod : navigatorList)
-			if(mod.getName().toLowerCase().contains(query)
-				|| mod.getSearchTags().toLowerCase().contains(query)
-				|| mod.getDescription().toLowerCase().contains(query))
+			if(mod.getDisplayName().toLowerCase(Locale.ROOT).contains(query)
+				|| mod.getSearchTags().toLowerCase(Locale.ROOT).contains(query)
+				|| mod.getDescription().toLowerCase(Locale.ROOT)
+					.contains(query))
 				list.add(mod);
 			
 		Comparator<String> c = (o1, o2) -> {
-			int index1 = o1.toLowerCase().indexOf(query);
-			int index2 = o2.toLowerCase().indexOf(query);
+			int index1 = o1.toLowerCase(Locale.ROOT).indexOf(query);
+			int index2 = o2.toLowerCase(Locale.ROOT).indexOf(query);
 			
 			if(index1 == index2)
 				return 0;

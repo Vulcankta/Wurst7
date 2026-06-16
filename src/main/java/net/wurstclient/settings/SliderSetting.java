@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Wurst-Imperium and contributors.
+ * Copyright (c) 2014-2026 Wurst-Imperium and contributors.
  *
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
@@ -9,6 +9,7 @@ package net.wurstclient.settings;
 
 import java.text.DecimalFormat;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -297,8 +298,9 @@ public class SliderSetting extends Setting implements SliderLock
 	{
 		String fullName = featureName + " " + getName();
 		
-		String command = ".setslider " + featureName.toLowerCase() + " ";
-		command += getName().toLowerCase().replace(" ", "_") + " ";
+		String command =
+			".setslider " + featureName.toLowerCase(Locale.ROOT) + " ";
+		command += getName().toLowerCase(Locale.ROOT).replace(" ", "_") + " ";
 		
 		LinkedHashSet<PossibleKeybind> pkb = new LinkedHashSet<>();
 		pkb.add(new PossibleKeybind(command + "more", "Increase " + fullName));
